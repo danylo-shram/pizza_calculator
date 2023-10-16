@@ -1,44 +1,47 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f7f7f7;
+    background-color: #fff;
+    color: #333;
+    margin: 0;
+    padding: 0;
 }
 
-.container {
-    width: 80%;
-    margin: 20px auto;
+.pizza-container {
+    width: 60%;
+    margin: 0 auto;
+    text-align: center;
     padding: 20px;
-    background-color: #FFFFFF;
-    border-radius: 10px;
 }
 
-h1 {
-    text-align: center;
-    color: green;
-    border-bottom: 3px solid red;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
+.pizza-size {
+    margin: 20px 0;
 }
 
-label {
-    display: block;
-    margin-top: 10px;
+.pizza-size label, .pizza-toppings label {
+    font-weight: bold;
 }
 
-.pizzaImage {
-    margin-top: 20px;
-    text-align: center;
+.pizza-image {
+    width: 40%;
+    float: left;
 }
 
-.pizzaImage img {
-    max-width: 200px;
-    animation: rotation 60s infinite linear;
+#pizza-img {
+    max-width: 100%;
 }
 
-@keyframes rotation {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+.ingredients {
+    width: 40%;
+    float: left;
+    padding: 20px;
+}
+
+#ingredients-list {
+    list-style: none;
+    padding: 0;
+}
+
+.ingredients h2 {
+    font-size: 1.2em;
+    font-weight: bold;
 }
