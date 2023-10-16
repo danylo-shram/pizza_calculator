@@ -1,60 +1,63 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const pizzaType = document.getElementById('pizzaType');
-    const diameter = document.getElementById('diameter');
-    const diameterValue = document.getElementById('diameterValue');
-    const ingredients = document.getElementById('ingredients');
-    const pizzaImg = document.getElementById('pizzaImg');
+    const diameterRange = document.getElementById("diameter");
+    const diameterValue = document.getElementById("diameter-value");
+    const toppingSelect = document.getElementById("topping");
+    const pizzaImg = document.getElementById("pizza-img");
+    const ingredientsList = document.getElementById("ingredients-list");
+    const calculateButton = document.getElementById("calculate-button");
 
-    const recipes = {
-        paparoni: {
-            image: "папероні.png",
-            ingredients: {
-                "Томатна паста": 120,
-                "Моцарела": 30,
-                "Салямі": 120,
-                "Сир твердий": 30
-            }
-        },
-        '4cheeses': {
-            image: "4сира.png",
-            ingredients: {
-                "Томатна паста або білий соус": 120,
-                "Моцарела": 30,
-                "Пармезан": 30,
-                "Горгонзола": 30,
-                "Твердий сир": 30
-            }
-        },
-        hawaiian: {
-            image: "гавайська.png",
-            ingredients: {
-                "Томатна паста": 120,
-                "Моцарела": 60,
-                "Мясо курки": 100,
-                "Кусочки ананасу": 90
-            }
-        }
-    };
-
-    function updateIngredients() {
-        const type = pizzaType.value;
-        const sizeFactor = (Math.pow(parseInt(diameter.value), 2) / Math.pow(30, 2));
-        let html = '';
-
-        for (const ingredient in recipes[type].ingredients) {
-            const amount = recipes[type].ingredients[ingredient] * sizeFactor;
-            html += `<p>${ingredient}: ${Math.round(amount)} г</p>`;
-        }
-        
-        ingredients.innerHTML = html;
-        pizzaImg.src = recipes[type].image;
-    }
-
-    pizzaType.addEventListener('change', updateIngredients);
-    diameter.addEventListener('input', function() {
-        diameterValue.textContent = diameter.value;
-        updateIngredients();
+    diameterRange.addEventListener("input", function() {
+        diameterValue.textContent = diameterRange.value + " см";
     });
 
-    updateIngredients();
+    calculateButton.addEventListener("click", function() {
+        const diameter = parseInt(diameterRange.value);
+        const topping = toppingSelect.value;
+        let ingredientCount = 0;
+
+        switch (topping) {
+            case "pepperoni":
+                ingredientCount = calculatePepperoniIngredients(diameter);
+                pizzaImg.src = "папероні.png";
+                break;
+            case "four-cheese":
+                ingredientCount = calculateFourCheeseIngredients(diameter);
+                pizzaImg.src = "4сира.png";
+                break;
+            case "hawaiian":
+                ingredientCount = calculateHawaiianIngredients(diameter);
+                pizzaImg.src = "гавайська.png";
+                break;
+        }
+
+        displayIngredients(ingredientsList, ingredientCount);
+    });
+
+    function calculatePepperoniIngredients(diameter) {
+        // Логіка розрахунку інгредієнтів для папероні
+        // Ваш код розрахунку тут
+        return 0; // Повертаємо кількість інгредієнтів
+    }
+
+    function calculateFourCheeseIngredients(diameter) {
+        // Логіка розрахунку інгредієнтів для 4 сира
+        // Ваш код розрахунку тут
+        return 0; // Повертаємо кількість інгредієнтів
+    }
+
+    function calculateHawaiianIngredients(diameter) {
+        // Логіка розрахунку інгредієнтів для Гавайської
+        // Ваш код розрахунку тут
+        return 0; // Повертаємо кількість інгредієнтів
+    }
+
+    function displayIngredients(ul, count) {
+        ul.innerHTML = "";
+        for (let i = 1; i <= count; i++) {
+            const li = document.createElement("li");
+            li.textContent = "Інгредієнт " + i;
+            ul.appendChild(li);
+        }
+    }
 });
+
